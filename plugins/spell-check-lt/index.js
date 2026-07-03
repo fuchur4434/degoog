@@ -16,6 +16,7 @@ const _skipOnce = new Set();
 
 let _cache = null;
 let _lang = "auto";
+let _preferredVariants = "de-DE,en-US";
 let _endpoint = DEFAULT_ENDPOINT;
 let _apiBase = "";
 let _tpl = "";
@@ -102,11 +103,26 @@ export const interceptor = {
       description:
         "Language code (e.g. en-US, de-DE) or 'auto' for automatic detection.",
     },
+    {
+      key: "preferredVariants",
+      label: "Preferred variants (auto mode only)",
+      type: "text",
+      default: "de-DE,en-US",
+      placeholder: "de-DE,en-US",
+      description:
+        "Comma-separated language variants to restrict auto-detection to " +
+        "(e.g. de-DE,en-US). Only used when Language is set to 'auto'. " +
+        "Prevents wrong guesses on short queries. Leave empty to disable.",
+    },
   ],
 
   configure(settings) {
     _endpoint = (settings.endpoint || DEFAULT_ENDPOINT).trim() || DEFAULT_ENDPOINT;
     _lang = (settings.language || "auto").trim() || "auto";
+    _preferredVariants =
+      settings.preferredVariants !== undefined
+        ? String(settings.preferredVariants).trim()
+        : "de-DE,en-US";
   },
 
   async init(ctx) {
@@ -144,6 +160,12 @@ export const interceptor = {
         enabledCategories: "TYPOS",
         enabledOnly: "true",
       });
+
+      // preferredVariants is only valid with language=auto; LanguageTool
+      // rejects the request if it's sent alongside a fixed language.
+      if (_lang === "auto" && _preferredVariants) {
+        body.set("preferredVariants", _preferredVariants);
+      }
 
       const res = await fetchFn(_endpoint, {
         method: "POST",
