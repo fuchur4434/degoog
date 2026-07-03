@@ -1,0 +1,18 @@
+{
+  "name": "degoog-plugins",
+  "description": "Däny's degoog extensions — privacy-friendly plugins for a self-hosted homelab.",
+  "author": "Däny",
+  "plugins": [
+    {
+      "path": "plugins/spell-check-lt",
+      "name": "Spell Check (LanguageTool)",
+      "description": "Intercepts search queries and corrects spelling using LanguageTool. A privacy-friendly, non-Russian alternative to the Yandex Speller plugin. Backend is configurable, so you can point it at your own self-hosted LanguageTool instance.",
+      "version": "1.1.0",
+      "type": "slot"
+    }
+  ],
+  "themes": [],
+  "engines": [],
+  "transports": [],
+  "repo-image": "logo.png"
+}

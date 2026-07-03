@@ -1,0 +1,16 @@
+.spellcheck-lt-banner {
+  margin: 0 0 0.75rem 0;
+  font-size: 0.95rem;
+  line-height: 1.4;
+}
+.spellcheck-lt-corrected {
+  font-weight: 600;
+  font-style: italic;
+}
+.spellcheck-lt-original {
+  font-size: 0.85rem;
+  opacity: 0.8;
+}
+.spellcheck-lt-skip {
+  font-style: italic;
+}
