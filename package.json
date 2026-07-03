@@ -9,6 +9,13 @@
       "description": "Intercepts search queries and corrects spelling using LanguageTool. A privacy-friendly, non-Russian alternative to the Yandex Speller plugin. Backend is configurable, so you can point it at your own self-hosted LanguageTool instance.",
       "version": "1.2.0",
       "type": "slot"
+    },
+    {
+      "path": "plugins/time-local",
+      "name": "Time",
+      "description": "Show the current time in any city or timezone. Fully offline — uses the built-in IANA timezone database (~350 zones), so cities like Rome, Madrid or Cairo resolve automatically and no query ever leaves your network. Includes German-language aliases.",
+      "version": "1.0.0",
+      "type": "command"
     }
   ],
   "themes": [],
